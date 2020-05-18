@@ -80,4 +80,26 @@ def count_sort(arr, maximum=-1):
     return sorted_list
 
 
-print(count_sort([2, 3, 3, 7, 5, 2], 7))
+# print(count_sort([2, 3, 3, 7, 5, 2], 7))
+
+# INSERTION SORT
+
+def insertion_sort(arr):
+    # start at the index 1 bc index 0 is sorted
+    indexing_length = range(1, len(arr))
+
+    # loop through all values in indexing_length and assign them to a var that needs to be sorted later on
+    for i in indexing_length:
+        value_to_sort = arr[i]
+
+        # while item to immediate left of current index > value_to_sirt/ right value and i > 0
+        # python allows negative indexing and we want to avoid that at all costs
+        while arr[i - 1] > value_to_sort and i > 0:
+            # swap those items if the condition is met
+            arr[i], arr[i-1] = arr[i - 1], arr[i]
+            # step down the list and continue swapping when necessary
+            i = i - 1
+    return arr
+
+
+print(insertion_sort([1, 23, 58, 4, 5, 2, 6]))
