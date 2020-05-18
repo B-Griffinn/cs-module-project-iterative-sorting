@@ -36,4 +36,4 @@ def binary_search(arr, target):
     return -1
 
 
-print(binary_search([0, 1, 2, 3, 5, 7, 8], 1))
+# print(binary_search([0, 1, 2, 3, 5, 7, 8], 1))
