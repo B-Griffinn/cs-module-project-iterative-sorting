@@ -1,105 +1,61 @@
 # TO-DO: Complete the selection_sort() function below
-'''
-Consider the first element to be sorted and the rest to be unsorted
-Assume the first element to be the smallest element.
-Check if the first element is smaller than each of the other elements:
-If yes, do nothing
-If no, choose the other smaller element as minimum and repeat step 3
-After completion of one iteration through the list, swap the smallest element with the first element of the list.
-Now consider the second element in the list to be the smallest and so on till all the elements in the list are covered.
-'''
-
-
 def selection_sort(arr):
     # loop through n-1 elements
     for i in range(0, len(arr) - 1):
 
-        # store min value starting at index 0 to begin
         lowest = i
 
-        # loop thru arr again starting at the index after lowest and keep looping until end of given arr
+        # TO-DO: find next smallest element
+        # (hint, can do in 3 loc)
+        # Your code here
         for j in range(lowest + 1, len(arr)):
-            # compare our next element to the current lowest element
             if arr[j] < arr[lowest]:
-                # update our lowest var when the condition is met
                 lowest = j
 
         # TO-DO: swap
         # Your code here
-        # once we finish looping the second time we swap the original index with our lowest index found on that inner loop
         arr[i], arr[lowest] = arr[lowest], arr[i]
 
     return arr
 
 
-# print(selection_sort([12, 9, 7, 40]))
-
-
 # TO-DO:  implement the Bubble Sort function below
+
+
 def bubble_sort(arr):
+    # Your code here
+    # loop thru our arr
+    # loop trhough our arr again but compare index to index + 1
+    # if index +1 < index then swap
+
     for i in range(0, len(arr) - 1):
         for j in range(i + 1, len(arr)):
             if arr[j] < arr[i]:
                 arr[i], arr[j] = arr[j], arr[i]
-    # OR #
-    # for i in range(len(arr)-1, 0, -1):
-    #     for j in range(i):
-    #         if arr[j] > arr[i]:
-    #             arr[i], arr[j] = arr[j], arr[i]
+
     return arr
 
 
-# arr1 = [12, 7, 9, 44]
-# print(bubble_sort(arr1))
+arr1 = [1, 5, 8, 4, 2, 9, 6, 0, 3, 7]
+print(bubble_sort(arr1))
+
+'''
+STRETCH: implement the Counting Sort function below
+Counting sort is a sorting algorithm that works on a set of data where
+we specifically know the maximum value that can exist in that set of
+data. The idea behind this algorithm then is that we can create "buckets"
+from 0 up to the max value. This is most easily done by initializing an
+array of 0s whose length is the max value + 1 (why do we need this "+ 1"?).
+Each buckets[i] then is responsible for keeping track of how many times 
+we've seen `i` in the input set of data as we iterate through it.
+Once we know exactly how many times each piece of data in the input set
+showed up, we can construct a sorted set of the input data from the 
+buckets. 
+What is the time and space complexity of the counting sort algorithm?
+'''
 
 
-# STRETCH: implement the Count Sort function below
-def count_sort(arr, maximum=-1):
+def counting_sort(arr, maximum=None):
     # Your code here
-    # counts will store the each variable in its own place
-    # [0's, 1's, 2's, 3's, 4's...]
-    counts = [0] * (maximum + 1)
-    # loop thru the arr
-    for i in arr:
-        # print('counbts i', counts[i])
-        # increment each index in order to count
-        counts[i] += 1
-        # print('counts', counts)
 
-    num_items_before = 0
-    for x, count in enumerate(counts):
-        counts[x] = num_items_before
-        num_items_before += count
-
-    sorted_list = [None] * len(arr)
-
-    for j in arr:
-        sorted_list[counts[j]] = j
-        counts[j] += 1
-
-    return sorted_list
-
-
-# print(count_sort([2, 3, 3, 7, 5, 2], 7))
-
-# INSERTION SORT
-
-def insertion_sort(arr):
-    # start at the index 1 bc index 0 is sorted
-    indexing_length = range(1, len(arr))
-
-    # loop through all values in indexing_length and assign them to a var that needs to be sorted later on
-    for i in indexing_length:
-        value_to_sort = arr[i]
-
-        # while item to immediate left of current index > value_to_sirt/ right value and i > 0
-        # python allows negative indexing and we want to avoid that at all costs
-        while arr[i - 1] > value_to_sort and i > 0:
-            # swap those items if the condition is met
-            arr[i], arr[i-1] = arr[i - 1], arr[i]
-            # step down the list and continue swapping when necessary
-            i = i - 1
     return arr
-
-
-print(insertion_sort([1, 23, 58, 4, 5, 2, 6]))
